@@ -11,6 +11,11 @@
     <script src="socket.io/socket.io.js"></script>
 
     <script>
+
+
+
+
+
         var socket = io();
 
         socket.on('connect', function() {
@@ -25,7 +30,17 @@
         socket.emit('mensaje', { nombre: 'Fernando' } );
 
         socket.on('mensaje', function( payload ){
-            console.log('Escuhando:', payload );
+            console.log('Escuhando mensaje:', payload );
+        });
+
+        socket.on('nuevo-mensaje', function( payload ){
+            console.log('Escuhando nuevo-mensaje:', payload['mensaje'] );
+        });
+
+        socket.on('active-bands', function( bands ){
+            console.clear();
+            console.log('Escuhando active-bands:' );
+            console.table( bands );
         });
 
 
